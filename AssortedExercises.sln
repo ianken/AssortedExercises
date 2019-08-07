@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostCommonChar", "MostCommo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgos", "SortingAlgos\SortingAlgos.csproj", "{A06E43F9-898B-4A2B-9D7A-9B6058E42CB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinglyLinkedLists", "SinglyLinkedLists\SinglyLinkedLists.csproj", "{E2C978B1-92AF-4AC1-B24D-A1487BCBF4ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A06E43F9-898B-4A2B-9D7A-9B6058E42CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A06E43F9-898B-4A2B-9D7A-9B6058E42CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A06E43F9-898B-4A2B-9D7A-9B6058E42CB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2C978B1-92AF-4AC1-B24D-A1487BCBF4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2C978B1-92AF-4AC1-B24D-A1487BCBF4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2C978B1-92AF-4AC1-B24D-A1487BCBF4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2C978B1-92AF-4AC1-B24D-A1487BCBF4ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
