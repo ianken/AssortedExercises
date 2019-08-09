@@ -123,6 +123,44 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         return head;
     }
 
+    static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode head, int data, int position) {
+
+        var newNode = new SinglyLinkedListNode(data);
+
+        if(head == null)
+        {
+            return newNode;
+        }
+
+        SinglyLinkedListNode seekHead = head;
+        SinglyLinkedListNode previousNode = head;
+
+        int i = 0;
+
+        while( i != position)
+        {
+            previousNode = seekHead;            
+            seekHead = seekHead.next;
+            
+            i++;
+        }
+
+        //Insert at begining
+        if(seekHead == head)
+        {
+            newNode.next = head;
+            head = newNode;
+        }
+        else 
+        {
+            previousNode.next = newNode;
+            newNode.next = seekHead;
+         }
+               
+        return head;
+    }
+
+
     static void Main(string[] args)
     {
         //TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
@@ -130,17 +168,19 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         SinglyLinkedList llist = new SinglyLinkedList();
 
         int llistCount = 4; // Convert.ToInt32(Console.ReadLine());
-        int[] items = { 1, 2, 3, 4 }
-; for (int i = 0; i < llistCount; i++)
+        int[] items = { 1, 2, 3, 4 };
+   
+        for (int i = 0; i < llistCount; i++)
         {
             int llistItem = items[i];
             //SinglyLinkedListNode llist_head = insertNodeAtTail(llist.head, llistItem);
             SinglyLinkedListNode llist_head = insertNodeAtHead(llist.head, llistItem);
             llist.head = llist_head;
-
         }
 
-
+            int data = 66;
+            int position = 3;
+            var newHead = insertNodeAtPosition(llist.head, data, position);
 
         //PrintSinglyLinkedList(llist.head, "\n", textWriter);
         // textWriter.WriteLine();
