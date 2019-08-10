@@ -160,6 +160,41 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         return head;
     }
 
+    static SinglyLinkedListNode deleteNode(SinglyLinkedListNode head, int position)
+    {
+
+        SinglyLinkedListNode seekHead = head;
+        SinglyLinkedListNode previousNode = head;
+
+        int i = 0;
+
+        while (i != position)
+        {
+            previousNode = seekHead;
+            seekHead = seekHead.next;
+
+            i++;
+        }
+
+        //Delete Head
+        if (seekHead == previousNode)
+        {
+            if (seekHead.next != null)
+                return seekHead.next;
+            else //only one item in the list
+                return null;
+        }
+                
+        //end of list
+        if (seekHead.next == null)
+        {
+            previousNode.next = null;
+            return head;
+        }
+
+        previousNode.next = seekHead.next;
+        return head;
+    }
 
     static void Main(string[] args)
     {
