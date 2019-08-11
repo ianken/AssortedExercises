@@ -160,6 +160,24 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         return head;
     }
 
+    static void reversePrint(SinglyLinkedListNode head)
+    {
+
+        if (head == null)
+            return;
+
+        if (head.next == null)
+        {
+            Console.WriteLine(head.data);
+            return;
+        }
+        else
+        {
+            reversePrint(head.next);
+            Console.WriteLine(head.data);
+        }
+    }
+
     static SinglyLinkedListNode deleteNode(SinglyLinkedListNode head, int position)
     {
 
@@ -213,9 +231,11 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
             llist.head = llist_head;
         }
 
-            int data = 66;
-            int position = 3;
-            var newHead = insertNodeAtPosition(llist.head, data, position);
+        int data = 66;
+        int position = 3;
+        var newHead = insertNodeAtPosition(llist.head, data, position);
+
+        reversePrint(llist.head);
 
         //PrintSinglyLinkedList(llist.head, "\n", textWriter);
         // textWriter.WriteLine();
