@@ -178,6 +178,56 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         }
     }
 
+    static bool CompareLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) 
+    {
+        var index1 = head1;
+        var index2 = head2;
+
+        if(head1 == null || head2 == null)
+            return false;
+
+        var result = true;
+
+        while(index1 != null && index2 != null)
+        {
+            if(index1.data != index2.data)
+                result = false;
+            
+            index1 = index1.next;
+            index2 = index2.next;
+        }
+
+        //Both should be null
+        if(index1 != index2)
+            result = false;
+
+        return result;
+
+    }
+
+    static SinglyLinkedListNode reverseList(SinglyLinkedListNode head)
+    {
+        if (head == null)
+            return null;
+
+        if (head.next == null)
+        {
+           //This is hit when the end of the list is reached.
+           //This returns the tail and is assigned to "newHead." 
+           return head;
+        }
+        
+        SinglyLinkedListNode newHead = reverseList(head.next); 
+
+        //Set the next node next to point back to the current node 
+        head.next.next = head; 
+        //Terminate list
+        head.next = null; 
+        
+        //newHead is only set when the end of the list is reaached.
+        return newHead; 
+    }
+
     static SinglyLinkedListNode deleteNode(SinglyLinkedListNode head, int position)
     {
 
@@ -236,6 +286,11 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         var newHead = insertNodeAtPosition(llist.head, data, position);
 
         reversePrint(llist.head);
+        var foo = reverseList(llist.head);
+        reversePrint(foo);
+
+        var result = CompareLists(foo,foo);
+        result = CompareLists(foo,llist.head);
 
         //PrintSinglyLinkedList(llist.head, "\n", textWriter);
         // textWriter.WriteLine();
