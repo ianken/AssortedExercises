@@ -362,6 +362,42 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         return head;
     }
 
+    static int getNode(SinglyLinkedListNode head, int positionFromTail) {
+/*
+        //Brute Force:
+        List<int> data = new List<int>();
+        var seekHead = head;
+        while(seekHead != null)
+        {
+            data.Add(seekHead.data);
+            seekHead = seekHead.next;
+        }
+
+        return data[data.Count - positionFromTail - 1 ];
+         
+ */
+     // More elegant. I did not come up with this one, but it's cool.
+     /* In a nutshell: "result" does not begin to advance until it is "positionFromTail" 
+      * behind "current." Then they advance together. When current is null, result will
+      * be where it needs to be.*/
+
+        int index = 0;
+        SinglyLinkedListNode current = head;
+        SinglyLinkedListNode result = head;
+        while(current!=null)
+        {
+            current=current.next;
+
+            if (index++ > positionFromTail)
+            {
+                result=result.next;
+            }
+        }
+        
+        return result.data;
+
+    }
+
     static void Main(string[] args)
     {
         //TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
@@ -404,6 +440,8 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
 
         var merged = mergeLists(llist.head,llist2.head);
         reversePrint(merged);
+
+        var foo = getNode(merged, 3);
 
         //PrintSinglyLinkedList(merged, "\n", textWriter);
         // textWriter.WriteLine();
