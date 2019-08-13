@@ -48,15 +48,26 @@ class Solution
         }
     }
 
-    class SinglyLinkedList
-    {
+    class SinglyLinkedList {
         public SinglyLinkedListNode head;
+        public SinglyLinkedListNode tail;
 
-        public SinglyLinkedList()
-        {
+        public SinglyLinkedList() {
             this.head = null;
+            this.tail = null;
         }
 
+        public void InsertNode(int nodeData) {
+            SinglyLinkedListNode node = new SinglyLinkedListNode(nodeData);
+
+            if (this.head == null) {
+                this.head = node;
+            } else {
+                this.tail.next = node;
+            }
+
+            this.tail = node;
+        }
     }
 
     static void PrintSinglyLinkedList(SinglyLinkedListNode node, string sep, TextWriter textWriter)
@@ -232,7 +243,7 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
     {
 
        //Floyd's cycle detection...
-       https://en.wikipedia.org/wiki/Cycle_detection
+       //https://en.wikipedia.org/wiki/Cycle_detection
         
        var n1 = head; //The fast seek head 
        var n2 = head; //The slow seek head.
@@ -249,6 +260,71 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
 
     return false;
     }
+    
+    //Brute force
+    static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) 
+    {
+
+        if(head1 == null && head2 != null)
+            return head2;
+        if(head1 != null && head2 == null)
+            return head1;
+        if(head1 == null && head2 == null)
+            return null;
+
+        var newList = new SinglyLinkedList();
+  
+        while(true)
+        {
+            if((head1 == null) && (head2 == null))
+               return newList.head;
+            
+            if(head1 == null && head2 != null)
+            {
+                newList.head = insertNodeAtTail(newList.head,head2.data);
+                head2 = head2.next;
+            }
+            else if(head1 != null && head2 == null)
+            {
+                newList.head = insertNodeAtTail(newList.head,head1.data);
+                head1 = head1.next;
+            }
+            else if(head1.data <= head2.data)
+            {
+                newList.head = insertNodeAtTail(newList.head,head1.data);
+                head1 = head1.next;
+            }
+            else if (head1.data > head2.data)
+            {
+                newList.head = insertNodeAtTail(newList.head,head2.data);
+                head2 = head2.next;
+            }
+        }
+    }
+
+    static SinglyLinkedListNode mergeListsRecursive(SinglyLinkedListNode head1, SinglyLinkedListNode head2) 
+    {
+        if (head1 == null && head2 == null) return null;
+
+        else if (head1 == null) return head2; //burn through remaining items in head2
+        else if (head2 == null) return head1; //burn through remaining items in head1
+    
+        if(head1.data <= head2.data)
+        {
+            head1.next = mergeLists(head1.next, head2);
+        }
+        else //head2 is smaller than head1
+        {
+            SinglyLinkedListNode temp = head2;
+            head2 = head2.next;
+            temp.next = head1;
+            head1 = temp;
+            head1.next = mergeLists(head1.next, head2);
+        }
+        return head1; 
+    }
+
+    
 
     static SinglyLinkedListNode deleteNode(SinglyLinkedListNode head, int position)
     {
@@ -291,18 +367,29 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         //TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
         SinglyLinkedList llist = new SinglyLinkedList();
+        SinglyLinkedList llist2 = new SinglyLinkedList();
 
         int llistCount = 4; // Convert.ToInt32(Console.ReadLine());
-        int[] items = { 1, 2, 3, 4 };
+        int[] items = { 1, 3, 5, 7 };
+        int[] items2 = { 0, 2, 4, 6 };
    
         for (int i = 0; i < llistCount; i++)
         {
             int llistItem = items[i];
-            //SinglyLinkedListNode llist_head = insertNodeAtTail(llist.head, llistItem);
-            SinglyLinkedListNode llist_head = insertNodeAtHead(llist.head, llistItem);
+            SinglyLinkedListNode llist_head = insertNodeAtTail(llist.head, llistItem);
+            //SinglyLinkedListNode llist_head = insertNodeAtHead(llist.head, llistItem);
             llist.head = llist_head;
         }
 
+        for (int i = 0; i < llistCount; i++)
+        {
+            int llistItem = items2[i];
+            SinglyLinkedListNode llist_head = insertNodeAtTail(llist2.head, llistItem);
+            
+            llist2.head = llist_head;
+        }
+
+        /*
         int data = 66;
         int position = 3;
         var newHead = insertNodeAtPosition(llist.head, data, position);
@@ -313,8 +400,12 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
 
         var result = CompareLists(foo,foo);
         result = CompareLists(foo,llist.head);
+        */
 
-        //PrintSinglyLinkedList(llist.head, "\n", textWriter);
+        var merged = mergeLists(llist.head,llist2.head);
+        reversePrint(merged);
+
+        //PrintSinglyLinkedList(merged, "\n", textWriter);
         // textWriter.WriteLine();
 
         //textWriter.Flush();
