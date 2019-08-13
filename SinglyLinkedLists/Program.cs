@@ -228,6 +228,26 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         return newHead; 
     }
 
+    static bool hasCycle(SinglyLinkedListNode head) 
+    {
+
+       //Floyd's cycle detection...
+
+       var n1 = head;
+       var n2 = head;
+
+        while(n1.next != null && n1.next.next != null )
+        {
+            n1 = n1.next.next;
+            n2 = n2.next;
+            
+            if(n1 == n2)
+                return true;
+        }
+
+    return false;
+    }
+
     static SinglyLinkedListNode deleteNode(SinglyLinkedListNode head, int position)
     {
 
