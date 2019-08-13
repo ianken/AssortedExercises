@@ -232,15 +232,17 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
     {
 
        //Floyd's cycle detection...
-
-       var n1 = head;
-       var n2 = head;
+       https://en.wikipedia.org/wiki/Cycle_detection
+        
+       var n1 = head; //The fast seek head 
+       var n2 = head; //The slow seek head.
 
         while(n1.next != null && n1.next.next != null )
         {
             n1 = n1.next.next;
             n2 = n2.next;
-            
+            //If there is a cycle n1 will eventually
+            //catch up to n2 and they will be equal. 
             if(n1 == n2)
                 return true;
         }
