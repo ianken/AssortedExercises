@@ -362,6 +362,31 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         return head;
     }
 
+    //Remove dupes from sorted list
+    //This can be done recursivly but this is easier to read.
+    static SinglyLinkedListNode removeDuplicates(SinglyLinkedListNode head) {
+
+        if(head == null)
+            return head;
+        
+        var index = head;
+
+        while(index.next!= null)
+        {
+            if(index.data == index.next.data)
+            {
+                index.next = index.next.next;
+
+            }
+            else
+            {
+                index = index.next;
+            }
+        }
+    
+        return head;
+    }
+
     static int getNode(SinglyLinkedListNode head, int positionFromTail) {
 /*
         //Brute Force:
