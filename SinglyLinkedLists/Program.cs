@@ -97,7 +97,7 @@ class Solution
      * }
      *
      */
-static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data)
+    static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data)
     {
 
         var newHead = new SinglyLinkedListNode(data);
@@ -224,15 +224,16 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         if (head.next == null)
         {
            //This is hit when the end of the list is reached.
-           //This returns the tail and is assigned to "newHead." 
+           //This returns the tail and is assigned as the "newHead." 
            return head;
         }
-        
-        SinglyLinkedListNode newHead = reverseList(head.next); 
+                                  
+        SinglyLinkedListNode newHead = reverseList(head.next);                                           
 
         //Set the next node next to point back to the current node 
         head.next.next = head; 
-        //Terminate list
+
+        //Terminate list. This ensures the new last node is null terminated.
         head.next = null; 
         
         //newHead is only set when the end of the list is reaached.
@@ -253,7 +254,12 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
             n1 = n1.next.next;
             n2 = n2.next;
             //If there is a cycle n1 will eventually
-            //catch up to n2 and they will be equal. 
+            //catch up to n2 and they will be equal.
+            //IIRC this is a 1:2 resonance as seen 
+            //between the orbits of Earth and Mars which
+            //is why the optimal launch  windows to 
+            //Mars is about every two years.
+
             if(n1 == n2)
                 return true;
         }
