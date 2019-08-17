@@ -10,9 +10,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            int[] unsortedInt = { 3, 7, 1, 8, 32, 2, 5 };
-            var res = SelectionSort(unsortedInt);
-            res = MergeSort(unsortedInt);
+            int[] unsortedInt = { 3, 7, 1,1, 32, 2, 1,3 };
+            //var res = SelectionSort(unsortedInt);
+            var res = MergeSort(unsortedInt);
             res = BubbleSort(unsortedInt);
         }
 
@@ -79,9 +79,12 @@ namespace ConsoleApp1
 
             for (int idx1 = 0; idx1 < result.Length; idx1++)
             {
-
                 if (leftIdx < left.Length && rightIdx < right.Length)
                 {
+                    
+                    //Choose the lesser of the two values and add it to the result
+                    //advance the index on the array from which the lesser value was selected
+
                     if (left[leftIdx] > right[rightIdx])
                     {
                         result[idx1] = right[rightIdx];
@@ -100,6 +103,7 @@ namespace ConsoleApp1
                 }
                 else
                 {
+                    //One item is left in this case, so add it to the result.
                     if (rightIdx >= right.Length)
                     {
                         result[idx1] = left[leftIdx];
