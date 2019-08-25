@@ -25,7 +25,6 @@ namespace Stacks3
                 if(cmd.Length == 2)
                     data = Convert.ToInt32(cmd[1]);
        
-                //Too slow
                 switch (operation)
                 {
                     //Enqueue item
