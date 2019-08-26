@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace TreeOps
 {
@@ -7,20 +8,30 @@ namespace TreeOps
         static void Main(string[] args)
         {
 
-            int[] inputData = { 1, 2, 3, 4, 5, 6, 7, 8, 9,10,10 };
+            int[] inputData = { 1 , 2, 3, 4, 5, 6, 7, 8 , 9, 10, 11,12,13,14 };
             int[] inputBTData = {10,7,14,20,1,5,8};
             Random rnd = new System.Random();
+            int[] randomInputData = Enumerable.Repeat(0, 10).Select(i => rnd.Next(0, 100)).ToArray();
             
             var tree = new Tree();
             var bTree = new Tree();
+            var randTree = new Tree();
 
-            tree.BuildTree(inputData, tree.Root, 0);
-            bTree.BuildBinaryTree(inputBTData,bTree.Root);
-
+            //tree.BuildTree(inputData,tree.Root,0);
+            tree.BuildTree(inputData);
+            bTree.BuildBinaryTree(inputBTData);
+            randTree.BuildBinaryTree(randomInputData);
+            
             var result = bTree.LevelOrderTraversal();
             result = tree.LevelOrderTraversal();
             result = tree.PostOrderTraversal();
             result = tree.InOrderTraversal();
+
+            int height = 0;
+                        
+            height = tree.GetDepth();
+            height = bTree.GetDepth();
+            height = randTree.GetDepth();
 
         }
     }

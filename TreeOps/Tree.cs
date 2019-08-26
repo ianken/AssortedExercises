@@ -22,7 +22,7 @@ namespace TreeOps
             }
         }
 
-        public TreeNode BuildTree(int[] input, TreeNode root, int index)
+        protected TreeNode BuildTree(int[] input, TreeNode root, int index = 0)
         {
             if (index < input.Length)
             {
@@ -40,20 +40,27 @@ namespace TreeOps
             return root;
         }
 
-        public void BuildBinaryTree(int[] input,TreeNode root)
+        public TreeNode BuildTree(int[] input)
+        {
+            return BuildTree(input, this.Root);
+        }
+        
+        //public void BuildBinaryTree(int[] input,TreeNode root)
+        public void BuildBinaryTree(int[] input)
         {
             TreeNode result = null;
 
             foreach(int i in input)
             {
-                result = BinaryTreeInsert(ref root,i);
+                result = BinaryTreeInsert(ref this.Root,i);
             }
 
             this.Root = result;
         }
 
-        public TreeNode BinaryTreeInsert(ref TreeNode root, int data)
+        protected TreeNode BinaryTreeInsert(ref TreeNode root, int data)
         {
+            
             if(root == null)
             {
                 root = new TreeNode(data);
@@ -64,6 +71,40 @@ namespace TreeOps
                 root.Right = BinaryTreeInsert(ref root.Right,data);
         
             return root;
+
+        }
+        
+        public int GetDepth()
+        {
+            return this.GetTreeDepth(this.Root,0);
+        }
+
+        protected  int GetTreeDepth(TreeNode root, int depth)
+        {
+            
+            if (root == null)  
+            {
+                return depth; 
+            }
+            else
+            {  
+                var leftHeight = GetTreeDepth(root.Left, depth + 1);  
+                var rightHeight = GetTreeDepth(root.Right, depth +1);  
+                    
+                return Math.Max(leftHeight, rightHeight); 
+            }  
+        }
+
+        public bool IsBinaryTree()
+        {
+            var treeData = this.InOrderTraversal();
+
+            for (int i = 0; i < treeData.Length-1; i++)
+            {
+                if(treeData[i] >= treeData[i+1]) return false;
+            }
+    
+            return true;
 
         }
 
