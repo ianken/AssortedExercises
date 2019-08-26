@@ -39,10 +39,6 @@ namespace Stacks3
                 {
                     var plateValue = stack.Pop();
 
-                    //Sorting values divisuble by prime numbers 
-                    //into set of stacks based on the interation.
-                    //Output stacks start at "1"
-               
                     if (plateValue % GetPrime(index) == 0)
                     {
                         bStacks[index].Push(plateValue);

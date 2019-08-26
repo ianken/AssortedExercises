@@ -10,6 +10,7 @@ namespace TreeOps
 
             int[] inputData = { 1 , 2, 3, 4, 5, 6, 7, 8 , 9, 10, 11,12,13,14 };
             int[] inputBTData = {10,7,14,20,1,5,8};
+            int[] inputBTData2 = { 10, 7, 14,22 , 20, 1, 21,5, 8 };
             Random rnd = new System.Random();
             int[] randomInputData = Enumerable.Repeat(0, 10).Select(i => rnd.Next(0, 100)).ToArray();
             
@@ -17,9 +18,9 @@ namespace TreeOps
             var bTree = new Tree();
             var randTree = new Tree();
 
-            //tree.BuildTree(inputData,tree.Root,0);
             tree.BuildTree(inputData);
-            bTree.BuildBinaryTree(inputBTData);
+            bTree.BuildBinaryTree(inputBTData2);
+            var foo = bTree.GetLargestBstNode();
             randTree.BuildBinaryTree(randomInputData);
             
             var result = bTree.LevelOrderTraversal();

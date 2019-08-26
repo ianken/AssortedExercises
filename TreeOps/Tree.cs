@@ -52,28 +52,42 @@ namespace TreeOps
 
             foreach(int i in input)
             {
-                result = BinaryTreeInsert(ref this.Root,i);
+                //result = BinaryTreeInsert(ref this.Root,i);
+                result = BinaryTreeInsert(result, i);
             }
 
             this.Root = result;
         }
-
-        protected TreeNode BinaryTreeInsert(ref TreeNode root, int data)
+               
+        protected TreeNode BinaryTreeInsert(TreeNode node, int data)
         {
-            
-            if(root == null)
+           if (node == null)
+                return new TreeNode(data);
+            else
             {
-                root = new TreeNode(data);
-            }
-            else if(root.Data > data)
-                root.Left = BinaryTreeInsert(ref root.Left,data);
-            else if(root.Data <= data)
-                root.Right = BinaryTreeInsert(ref root.Right,data);
-        
-            return root;
+                if (data <= node.Data)
+                    node.Left = BinaryTreeInsert(node.Left, data);
+                else
+                    node.Right = BinaryTreeInsert(node.Right, data);
 
+               return node;
+            }
         }
-        
+
+        public TreeNode GetLargestBstNode()
+        {
+            return GetLargestBstNode(this.Root);
+        }
+
+        protected TreeNode GetLargestBstNode(TreeNode root)
+        {
+            if (root.Right != null)
+                return GetLargestBstNode(root.Right);
+            else
+                return root;
+        }
+
+
         public int GetDepth()
         {
             return this.GetTreeDepth(this.Root,0);
