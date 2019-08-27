@@ -85,8 +85,7 @@ namespace TreeOps
             else
                 return root;
         }
-
-
+        
         public int GetDepth()
         {
             return this.GetTreeDepth(this.Root,0);
