@@ -19,8 +19,12 @@ namespace TreeOps
             var randTree = new Tree();
 
             tree.BuildTree(inputData);
+
+            //BST search for largest node...
             bTree.BuildBinaryTree(inputBTData2);
-            var foo = bTree.GetLargestBstNode();
+            var BiggestNode = bTree.GetLargestBstNode();
+            var BiggestInt = inputBTData2.OrderByDescending(i => i).First();
+
             randTree.BuildBinaryTree(randomInputData);
             
             var result = bTree.LevelOrderTraversal();
@@ -34,6 +38,6 @@ namespace TreeOps
             height = bTree.GetDepth();
             height = randTree.GetDepth();
 
-        }
+           }
     }
 }

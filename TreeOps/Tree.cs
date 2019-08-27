@@ -52,7 +52,6 @@ namespace TreeOps
 
             foreach(int i in input)
             {
-                //result = BinaryTreeInsert(ref this.Root,i);
                 result = BinaryTreeInsert(result, i);
             }
 
