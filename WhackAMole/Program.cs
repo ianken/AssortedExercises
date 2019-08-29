@@ -12,10 +12,12 @@ namespace WhackAMole
         {
             int[] data = { 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1 };
             int[] data2 = { 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0 };
-            int[] data3 = { 1, 1, 1, 0, 0, 1, 1, 1 ,1 ,1 ,0 , 0, 0, 0, 1, 1};
+            int[] data3 = { 1, 1, 1, 0, 0, 1, 0, 1 ,0 ,1 ,0 , 1, 1, 0, 1, 1};
             var window = 5;
             int maxHole = 0;
 
+            //It's not all sexy and recursive, but it's a lot easier to read.
+            //Find the largest sum within a subaray of size "window"
             for (int i = 0; i <= data.Length - window; i++)
             {
                 var hole = data.Skip(i).Take(window).Sum();
@@ -26,13 +28,17 @@ namespace WhackAMole
                     holeIndex = i;
                 }
             }
+            
+            //Fetch the largest sum of a given sub array of size "window" within the input and return its index
             int index;
-
-            //Fetch the largest sum of a given sub array of size "window" within the input
             var recResult1 = GetLargestWithIndex(data3, window, 0, out index);
             //Fetch the largest sum of two sub arrays of a given size "window" within the input
             var recResult2 = SumTwoLargest(data3, window);
+            //Return largest contiguous run
+            var recResult3 = GetLargestIsland(data3, 0);
         }
+
+        //Lot of recursion. People like this. Sometimes it makes sense. ;-)
 
         static int GetLargest(int[] data, int window, int startIndex)
         {
@@ -57,6 +63,67 @@ namespace WhackAMole
             }
         }
 
+        //Find the count of the largest uninterupted run of non zero values in an array.
+        //This is the "find the largest island" question. A variant of the "whack a mole" mallet puzzle.
+        
+        static int GetLargestIsland(int[] data, int startIndex)
+        {
+            if (data == null)
+                throw new NullReferenceException("Input data cannot be null...");
+            if (startIndex >= data.Length)
+                throw new IndexOutOfRangeException($"Specified start point {startIndex} too large...");
+
+            if (startIndex < data.Length-1)
+            {
+                //Optimizaion to advance past measured islands.
+                var islandSize = GetIslandLength(data, startIndex);
+                var skip = islandSize == 0 ? startIndex + 1 : startIndex + islandSize;
+
+                if (skip < data.Length)
+                {
+                    return Math.Max(islandSize, GetLargestIsland(data, skip));
+                }
+                else
+                {
+                    return islandSize;
+                }
+            }
+            else
+            {
+                return GetIslandLength(data, startIndex);
+            }
+        }
+
+        static int GetIslandLength(int[] data, int index)
+        {
+            if (index >= data.Length)
+                throw new IndexOutOfRangeException($"Specified index {index} too large...");
+
+            var endIndex = GetLargestIslandBoundFromIndex(data, index);
+            return endIndex - index + 1;
+        }
+        
+        static int GetLargestIslandBoundFromIndex(int[] data, int index)
+        {
+            //All out of dry land
+            if (data[index] == 0)
+                return index - 1;
+
+            if (index < data.Length-1)
+            {
+                return GetLargestIslandBoundFromIndex(data, index + 1);
+            }
+            else
+            {
+                if (data[index] == 0)
+                    return index - 1;
+                else
+                    return index;
+            }
+        }
+
+        //Given two "mallets" what's the largest number of "moles" you can smoosh?
+        //A hybrid of the iterative and recursive moving window solution. 
         static int SumTwoLargest(int[] data, int window)
         {
             if (data == null)
