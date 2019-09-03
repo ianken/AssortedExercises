@@ -34,6 +34,8 @@ namespace WhackAMole
             //Fetch the largest sum of a given sub array of size "window" within the input and return its index
             int index;
             var recResult1 = GetLargestWithIndex(data3, window, 0, out index);
+            window = 4;
+            recResult1 = GetLargest(data3, window, 0);
             //Fetch the largest sum of two sub arrays of a given size "window" within the input
             var recResult2 = SumTwoLargest(data3, window);
             //Return largest contiguous run
@@ -57,8 +59,10 @@ namespace WhackAMole
         static int GetLargest(int[] data, int window, int startIndex)
         {
             if (data == null)
-                throw new NullReferenceException("Input data cannot be null");
-
+                throw new NullReferenceException("Input data cannot be null...");
+            if (data.Length == 0)
+                throw new ApplicationException("Input data cannot be empty...");
+            
             if (startIndex + window <= data.Length)
             {
                 if (startIndex + window < data.Length)
@@ -79,8 +83,27 @@ namespace WhackAMole
 
         //Find the count of the largest uninterupted run of non zero values in an array.
         //This is the "find the largest island" question. A variant of the "whack a mole" mallet puzzle.
-        
+
         static int GetLargestIsland(int[] data, int startIndex)
+        {
+            if (data == null)
+                throw new NullReferenceException("Input data cannot be null...");
+            if (startIndex >= data.Length)
+                throw new IndexOutOfRangeException($"Specified start point {startIndex} too large...");
+
+            if (startIndex < data.Length - 1)
+            {
+                return Math.Max(GetIslandLength(data,startIndex), GetLargestIsland(data, startIndex + 1));
+            }
+            else
+            {
+                return GetIslandLength(data, startIndex);
+            }
+
+        }
+
+        //Optimized a bit
+        static int GetLargestIslandOpt(int[] data, int startIndex)
         {
             if (data == null)
                 throw new NullReferenceException("Input data cannot be null...");
