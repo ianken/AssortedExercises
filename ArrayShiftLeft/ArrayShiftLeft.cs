@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Heaps
+namespace ArrayShiftLeft
 {
-    class Program
+    class ArrayShiftLeft
     {
         static void Main(string[] args)
         {

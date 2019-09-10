@@ -11,7 +11,7 @@ namespace SearchAndReplace
     //Allow for large files. 
     //The easy way to to read it all into memory and then do the replace using String.Replace.
 
-    class Program
+    class FileSearchAndReplace
     {
         static void Main(string[] args)
         {

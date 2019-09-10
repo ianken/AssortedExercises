@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace TreeOps
 {
-    class Program
+    class TreeOps
     {
         static void Main(string[] args)
         {

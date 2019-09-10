@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArrayShiftLeft
+namespace Heaps
 {
-    class Program
+
+    //ToDo: hey, maybe impelment min/max heap...
+    class Heaps
     {
         static void Main(string[] args)
         {

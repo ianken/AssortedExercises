@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Stacks3
 {
-    class Program
+    class Stacks3
     {
         static void Main(string[] args)
         {

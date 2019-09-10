@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace DependencyGraph
 {
-    class Program
+    class DepGraph
     {
         //given a list of classes that need to be taken
         //represented as integer pairs where the first int is
         //the dependecy and the second int is the class.
         //"0" signals no dependecy.
+        //For each assinged class see if all dependcies can bet met.
 
         public class DepNode
         {
@@ -30,15 +31,15 @@ namespace DependencyGraph
         {
             int[] test = null;
 
-            //Valid case
+            //Valid case...
             int[] data = { 0, 1, 0, 2, 3, 4, 1, 3 };
-            //Two depth circular reference
+            //Valid case...
             int[] data1 = { 0, 1, 0, 2, 3, 4, 5, 3, 2, 5 };
-            //Unscheduled dependency
+            //Unscheduled dependency There is no class "5" assigned
             int[] data2 = { 0, 1, 0, 2, 3, 4, 5, 3 };
             //Circular reference (4>-3 and 3->4)
             int[] data3 = { 0, 1, 0, 2, 3, 4, 4, 3 };
-            //Two depth circular reference
+            //Two depth circular reference 5->4 4->3 3->5
             int[] data4 = { 0, 1,
                             0, 2,
                             3, 4,
@@ -55,10 +56,10 @@ namespace DependencyGraph
                 classes.Add(tmpNode);
             }
 
-            var result = ValidateList(classes);
+            var result = ValidateClassList(classes);
         }
       
-        static bool ValidateList(List<DepNode> classes)
+        static bool ValidateClassList(List<DepNode> classes)
         {
             foreach (DepNode n in classes)
             {

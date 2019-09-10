@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-/* The task: given two arrays of integers where each array has the same number of elements and each int has the same number of digits
- * compute the distance between them. 
+/* The task: given two arrays of integers where each array has the same number of elements
+ * and each int has the same number of digits compute the distance between them. 
  * 
  * IE: the minimum number of increments or decrements needed to transform one array into the other.
  * 
@@ -19,7 +19,7 @@ using System.Linq;
 
 namespace MinMoves
 {
-    class Program
+    class MinMoves
 
     {
         static void Main(string[] args)

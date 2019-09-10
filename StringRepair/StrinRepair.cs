@@ -9,6 +9,7 @@ namespace StringRepair_AMZN
     class Program
     {
         //cheesy happy path...for a weak question...IMO.
+        //The internet indicats this was once an interview or phone screen question at AMZN.
         static void Main(string[] args)
         {
             var Str = "Amazon_w_e_b_services are___widely__used_acc__ro___ss_the_worl_d";
