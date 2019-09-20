@@ -14,7 +14,7 @@ namespace WhackAMole
         {
             int[] data = { 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1 };
             int[] data2 = { 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0 };
-            int[] data3 = { 1, 1, 1, 0, 0, 1, 0, 1 ,0 ,1 ,0 , 1, 1, 0, 1, 1};
+            int[] data3 = { 1, 1, 1, 0, 0, 1, 1, 1 ,1 ,1 ,0 , 1, 1, 0, 1, 1};
             var window = 5;
             int maxHole = 0;
 
@@ -33,19 +33,19 @@ namespace WhackAMole
             
             //Fetch the largest sum of a given sub array of size "window" within the input and return its index
             int index;
-            var recResult1 = GetLargestWithIndex(data3, window, 0, out index);
+            var recResult1 = GetLargestWithIndex(data3, window, out index);
             window = 4;
-            recResult1 = GetLargest(data3, window, 0);
+            recResult1 = LargestWindowSum(data3, window);
             //Fetch the largest sum of two sub arrays of a given size "window" within the input
             var recResult2 = SumTwoLargest(data3, window);
             var recResult22 = SumTwoLargestOpt(data3, window);
             //Return largest contiguous run
-            var recResult3 = GetLargestIsland(data3, 0);
+            var recResult3 = GetLargestIsland(data3);
         }
 
-        //Lot of recursion. People like this. Sometimes it makes sense. ;-)
-
-        static int GetLargest(int[] data, int window, int startIndex)
+        //Given a window of size "window" find the largest sum in the data set.
+        //Recursion.
+        static int LargestWindowSum(int[] data, int window, int startIndex = 0)
         {
             if (data == null)
                 throw new NullReferenceException("Input data cannot be null...");
@@ -56,7 +56,7 @@ namespace WhackAMole
             {
                 if (startIndex + window < data.Length)
                 {
-                    return Math.Max(GetLargest(data, window, startIndex + 1), data.Skip(startIndex).Take(window).Sum());
+                    return Math.Max(LargestWindowSum(data, window, startIndex + 1), data.Skip(startIndex).Take(window).Sum());
                 }
                 else
                 {
@@ -72,8 +72,7 @@ namespace WhackAMole
 
         //Find the count of the largest uninterupted run of non zero values in an array.
         //This is the "find the largest island" question. A variant of the "whack a mole" mallet puzzle.
-
-        static int GetLargestIsland(int[] data, int startIndex)
+        static int GetLargestIsland(int[] data, int startIndex = 0)
         {
             if (data == null)
                 throw new NullReferenceException("Input data cannot be null...");
@@ -166,13 +165,13 @@ namespace WhackAMole
                 {
                     //Get largest from "left" of moving window
                     var leftSubArray = data.Take(i - 1).ToArray();
-                    allSums.Add(GetLargest(leftSubArray, window, 0) + data.Skip(i).Take(window).Sum());
+                    allSums.Add(LargestWindowSum(leftSubArray, window, 0) + data.Skip(i).Take(window).Sum());
                 }
 
                 if (i + window < data.Length - window)
                 {
                     //Get largest from "right" of moving window
-                    allSums.Add(GetLargest(data, window, i + window) + data.Skip(i).Take(window).Sum());
+                    allSums.Add(LargestWindowSum(data, window, i + window) + data.Skip(i).Take(window).Sum());
                 }
             }
             return allSums.OrderByDescending(x => x).ToArray()[0];
@@ -200,7 +199,7 @@ namespace WhackAMole
                     //Get largest from "left" of moving window
                     var leftSubArray = data.Take(i - 1).ToArray();
                     var rightSubArray = data.Skip(i - 1).ToArray();
-                    allSums.Add(GetLargest(leftSubArray, window, 0) + GetLargest(rightSubArray, window, 0));
+                    allSums.Add(LargestWindowSum(leftSubArray, window, 0) + LargestWindowSum(rightSubArray, window, 0));
                 }
 
                 
@@ -208,13 +207,13 @@ namespace WhackAMole
             return allSums.OrderByDescending(x => x).ToArray()[0];
         }
 
-        static int GetLargestWithIndex(int[] data, int window, int startIndex, out int index)
+        static int GetLargestWithIndex(int[] data, int window, out int index, int startIndex = 0)
         {
             if (startIndex + window <= data.Length)
             {
                 if (startIndex + window < data.Length)
                 {
-                    var V1 = GetLargestWithIndex(data, window, startIndex + 1, out index);
+                    var V1 = GetLargestWithIndex(data, window, out index, startIndex + 1);
                     var V2 = data.Skip(startIndex).Take(window).Sum();
 
                     //As we bubble up the stack only set the 
