@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WhackAMole
 {
-    class WhakcAmole_LargestIsland
+    class Whack_A_Mole
     {
         static void Main(string[] args)
         {
