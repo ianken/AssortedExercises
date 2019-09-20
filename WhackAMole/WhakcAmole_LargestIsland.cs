@@ -38,6 +38,7 @@ namespace WhackAMole
             recResult1 = GetLargest(data3, window, 0);
             //Fetch the largest sum of two sub arrays of a given size "window" within the input
             var recResult2 = SumTwoLargest(data3, window);
+            var recResult22 = SumTwoLargestOpt(data3, window);
             //Return largest contiguous run
             var recResult3 = GetLargestIsland(data3, 0);
         }
@@ -173,6 +174,36 @@ namespace WhackAMole
                     //Get largest from "right" of moving window
                     allSums.Add(GetLargest(data, window, i + window) + data.Skip(i).Take(window).Sum());
                 }
+            }
+            return allSums.OrderByDescending(x => x).ToArray()[0];
+        }
+
+        //As the index sweeps across the array, compute the largest 
+        //subarrays on either side of the index and sum them.
+        //return the largest.
+        static int SumTwoLargestOpt(int[] data, int window)
+        {
+            if (data == null)
+                throw new NullReferenceException("Input data cannot be null");
+
+            if (window > data.Length / 2)
+                throw new ApplicationException("Search window is too large");
+
+            List<int> allSums = new List<int>();
+
+            for (int i = 0; i <= data.Length - window; i++)
+            {
+                //Only look when there's enough room on either side of the "mallet"
+                //to whack.
+                if (i > window)
+                {
+                    //Get largest from "left" of moving window
+                    var leftSubArray = data.Take(i - 1).ToArray();
+                    var rightSubArray = data.Skip(i - 1).ToArray();
+                    allSums.Add(GetLargest(leftSubArray, window, 0) + GetLargest(rightSubArray, window, 0));
+                }
+
+                
             }
             return allSums.OrderByDescending(x => x).ToArray()[0];
         }
