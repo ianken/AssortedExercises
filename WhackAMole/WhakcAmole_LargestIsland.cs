@@ -23,12 +23,7 @@ namespace WhackAMole
             for (int i = 0; i <= data.Length - window; i++)
             {
                 var hole = data.Skip(i).Take(window).Sum();
-                int holeIndex;
-                if (maxHole < hole)
-                {
-                    maxHole = hole;
-                    holeIndex = i;
-                }
+                maxHole = Math.Max(maxHole, hole);
             }
             
             //Fetch the largest sum of a given sub array of size "window" within the input and return its index
@@ -201,9 +196,5 @@ namespace WhackAMole
                 throw new IndexOutOfRangeException();
             }
         }
-
-
-        
-
     }
 }
