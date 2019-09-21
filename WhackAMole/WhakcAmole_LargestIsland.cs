@@ -37,8 +37,7 @@ namespace WhackAMole
             window = 4;
             recResult1 = LargestWindowSum(data3, window);
             //Fetch the largest sum of two sub arrays of a given size "window" within the input
-            var recResult2 = SumTwoLargest(data3, window);
-            var recResult22 = SumTwoLargestOpt(data3, window);
+            var recResult2 = SumTwoLargestOpt(data3, window);
             //Return largest contiguous run
             var recResult3 = GetLargestIsland(data3);
         }
@@ -90,6 +89,35 @@ namespace WhackAMole
 
         }
 
+        //Optimized a bit
+        static int GetLargestIslandOpt(int[] data, int startIndex)
+        {
+            if (data == null)
+                throw new NullReferenceException("Input data cannot be null...");
+            if (startIndex >= data.Length)
+                throw new IndexOutOfRangeException($"Specified start point {startIndex} too large...");
+
+            if (startIndex < data.Length - 1)
+            {
+                //Optimizaion to advance past measured islands.
+                var islandSize = GetIslandLength(data, startIndex);
+                var skip = islandSize == 0 ? startIndex + 1 : startIndex + islandSize;
+
+                if (skip < data.Length)
+                {
+                    return Math.Max(islandSize, GetLargestIsland(data, skip));
+                }
+                else
+                {
+                    return islandSize;
+                }
+            }
+            else
+            {
+                return GetIslandLength(data, startIndex);
+            }
+        }
+
         static int GetIslandLength(int[] data, int index)
         {
             if (index >= data.Length)
@@ -117,66 +145,7 @@ namespace WhackAMole
                     return index;
             }
         }
-        
-        //Optimized a bit
-        static int GetLargestIslandOpt(int[] data, int startIndex)
-        {
-            if (data == null)
-                throw new NullReferenceException("Input data cannot be null...");
-            if (startIndex >= data.Length)
-                throw new IndexOutOfRangeException($"Specified start point {startIndex} too large...");
-
-            if (startIndex < data.Length-1)
-            {
-                //Optimizaion to advance past measured islands.
-                var islandSize = GetIslandLength(data, startIndex);
-                var skip = islandSize == 0 ? startIndex + 1 : startIndex + islandSize;
-
-                if (skip < data.Length)
-                {
-                    return Math.Max(islandSize, GetLargestIsland(data, skip));
-                }
-                else
-                {
-                    return islandSize;
-                }
-            }
-            else
-            {
-                return GetIslandLength(data, startIndex);
-            }
-        }
-  
-        //Given two "mallets" what's the largest number of "moles" you can smoosh?
-        //A hybrid of the iterative and recursive moving window solution. 
-        static int SumTwoLargest(int[] data, int window)
-        {
-            if (data == null)
-                throw new NullReferenceException("Input data cannot be null");
-
-            if (window > data.Length / 2)
-                throw new ApplicationException("Search window is too large");
-
-            List<int> allSums = new List<int>();
-
-            for (int i = 0; i <= data.Length - window; i++)
-            {
-                if (i > window)
-                {
-                    //Get largest from "left" of moving window
-                    var leftSubArray = data.Take(i - 1).ToArray();
-                    allSums.Add(LargestWindowSum(leftSubArray, window, 0) + data.Skip(i).Take(window).Sum());
-                }
-
-                if (i + window < data.Length - window)
-                {
-                    //Get largest from "right" of moving window
-                    allSums.Add(LargestWindowSum(data, window, i + window) + data.Skip(i).Take(window).Sum());
-                }
-            }
-            return allSums.OrderByDescending(x => x).ToArray()[0];
-        }
-
+          
         //As the index sweeps across the array, compute the largest 
         //subarrays on either side of the index and sum them.
         //return the largest.
@@ -192,18 +161,15 @@ namespace WhackAMole
 
             for (int i = 0; i <= data.Length - window; i++)
             {
-                //Only look when there's enough room on either side of the "mallet"
-                //to whack.
+                //Only check when there's enough room on both sides of the index
                 if (i > window)
                 {
-                    //Get largest from "left" of moving window
                     var leftSubArray = data.Take(i - 1).ToArray();
                     var rightSubArray = data.Skip(i - 1).ToArray();
                     allSums.Add(LargestWindowSum(leftSubArray, window, 0) + LargestWindowSum(rightSubArray, window, 0));
                 }
-
-                
             }
+
             return allSums.OrderByDescending(x => x).ToArray()[0];
         }
 
