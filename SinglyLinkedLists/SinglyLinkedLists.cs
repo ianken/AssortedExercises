@@ -216,6 +216,24 @@ class Solution
 
     }
 
+    static SinglyLinkedListNode reverseListFlat(SinglyLinkedListNode head)
+    {
+
+        SinglyLinkedListNode previousNode = null, current = head, nextNode = null;
+
+        while (current != null)
+        {
+            nextNode = current.next;
+            current.next = previousNode;
+            previousNode = current;
+            current = nextNode;
+        }
+
+        head = previousNode;
+
+        return head;
+    }
+
     static SinglyLinkedListNode reverseList(SinglyLinkedListNode head)
     {
         if (head == null)
@@ -468,6 +486,8 @@ class Solution
         var result = CompareLists(foo,foo);
         result = CompareLists(foo,llist.head);
         */
+
+        var foo2 = reverseListFlat(llist.head);
 
         var merged = mergeLists(llist.head,llist2.head);
         reversePrint(merged);
