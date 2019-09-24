@@ -216,7 +216,7 @@ class Solution
 
     }
 
-    static SinglyLinkedListNode reverseListFlat(SinglyLinkedListNode head)
+    static SinglyLinkedListNode reverseListIterative(SinglyLinkedListNode head)
     {
 
         SinglyLinkedListNode previousNode = null, current = head, nextNode = null;
@@ -487,7 +487,7 @@ class Solution
         result = CompareLists(foo,llist.head);
         */
 
-        var foo2 = reverseListFlat(llist.head);
+        var foo2 = reverseListIterative(llist.head);
 
         var merged = mergeLists(llist.head,llist2.head);
         reversePrint(merged);
