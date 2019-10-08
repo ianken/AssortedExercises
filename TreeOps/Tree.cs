@@ -88,10 +88,10 @@ namespace TreeOps
         
         public int GetDepth()
         {
-            return this.GetTreeDepth(this.Root,0);
+            return this.GetTreeDepth(this.Root);
         }
 
-        protected  int GetTreeDepth(TreeNode root, int depth)
+        protected  int GetTreeDepth(TreeNode root, int depth = 0)
         {
             
             if (root == null)  

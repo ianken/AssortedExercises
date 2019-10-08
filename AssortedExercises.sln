@@ -5,9 +5,7 @@ VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAndReplace", "SearchAndReplace\SearchAndReplace.csproj", "{E2A645D0-139A-4AEF-B82C-A5C96E8A218C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparseArray", "SparseStrings\SparseArray.csproj", "{F7EB1E1D-F759-42F5-AF49-757A1F23CA6F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayShiftLeft", "ArrayShiftLeft\ArrayShiftLeft.csproj", "{CF2E8356-1B99-4AF4-8179-085976495D77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayShift", "SparseStrings\ArrayShift.csproj", "{F7EB1E1D-F759-42F5-AF49-757A1F23CA6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RollString", "RollString\RollString.csproj", "{87CA3412-4475-4BC1-B70B-1EF3E0CF9F47}"
 EndProject
@@ -43,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NextSmaller", "NextSmaller\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyGraph", "DependencyGraph\DependencyGraph.csproj", "{C2BE17DB-5835-4F5A-BFA6-003B846FA341}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrays", "Arrays\Arrays.csproj", "{BE930250-0A75-4DE7-8B07-BCADF07C6895}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,18 +77,6 @@ Global
 		{F7EB1E1D-F759-42F5-AF49-757A1F23CA6F}.Release|x64.Build.0 = Release|Any CPU
 		{F7EB1E1D-F759-42F5-AF49-757A1F23CA6F}.Release|x86.ActiveCfg = Release|Any CPU
 		{F7EB1E1D-F759-42F5-AF49-757A1F23CA6F}.Release|x86.Build.0 = Release|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Debug|x64.Build.0 = Debug|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Debug|x86.Build.0 = Debug|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Release|x64.ActiveCfg = Release|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Release|x64.Build.0 = Release|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Release|x86.ActiveCfg = Release|Any CPU
-		{CF2E8356-1B99-4AF4-8179-085976495D77}.Release|x86.Build.0 = Release|Any CPU
 		{87CA3412-4475-4BC1-B70B-1EF3E0CF9F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87CA3412-4475-4BC1-B70B-1EF3E0CF9F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87CA3412-4475-4BC1-B70B-1EF3E0CF9F47}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -293,6 +281,18 @@ Global
 		{C2BE17DB-5835-4F5A-BFA6-003B846FA341}.Release|x64.Build.0 = Release|Any CPU
 		{C2BE17DB-5835-4F5A-BFA6-003B846FA341}.Release|x86.ActiveCfg = Release|Any CPU
 		{C2BE17DB-5835-4F5A-BFA6-003B846FA341}.Release|x86.Build.0 = Release|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Debug|x64.Build.0 = Debug|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Debug|x86.Build.0 = Debug|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Release|x64.ActiveCfg = Release|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Release|x64.Build.0 = Release|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Release|x86.ActiveCfg = Release|Any CPU
+		{BE930250-0A75-4DE7-8B07-BCADF07C6895}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

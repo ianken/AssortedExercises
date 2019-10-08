@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{664CEE34-9C63-49A7-9E31-CAB35327B0B9}</ProjectGuid>
+    <ProjectGuid>{F7EB1E1D-F759-42F5-AF49-757A1F23CA6F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>WhackAMole</RootNamespace>
-    <AssemblyName>WhackAMole</AssemblyName>
+    <RootNamespace>SparseStrings</RootNamespace>
+    <AssemblyName>SparseStrings</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WhackAMole_LargestIsland.cs" />
+    <Compile Include="ArrayShift.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,7 @@ class Solution
 {
 
     // Complete the largestRectangle function below.
+    // Given an array of heights. 
     static long largestRectangle(int[] h)
     {
 
@@ -47,8 +48,6 @@ class Solution
             long area = width * rectHeight;
             maxArea = Math.Max(maxArea,area);
         }
-
-       
 
         return maxArea;
     }
