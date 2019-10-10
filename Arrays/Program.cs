@@ -50,6 +50,32 @@ namespace Arrays
             return a;
         }
 
+        //Note: guidance on MSDN is to use IList to handle generic arrays. 
+        //This was an interview question where the interviewer insisted on this method.
+        //Even though array has exposed IList since .NET 2.0 :-|
+        //Even so, like letting a Wookee win, it's best to humor QA org VPs.
+        static void CopyElements<T>(T[] input , T[] output, int count, int sourceStart, int destStart)
+        {
+            if (input == null || output == null)
+            {
+                throw new ArgumentNullException("Input and output must not be null");
+            }
+            if (sourceStart + count > input.Length)
+            {
+                throw new ArgumentException("Input and count exceed array length");
+            }
+            if (destStart + count > output.Length)
+            {
+                throw new ArgumentException("Output and count exceed array length");
+            }
+
+            for (int i = sourceStart; i < sourceStart + count; i++)
+            {
+                output[destStart] = input[i];
+                destStart++;
+            }
+        }
+
         static List<T> reverseArrayGeneric<T>(IList<T> a)
         {
             for (int index = 0; index <= (a.Count - 1) / 2; index++)
