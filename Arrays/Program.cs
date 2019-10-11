@@ -53,7 +53,6 @@ namespace Arrays
         //Note: guidance on MSDN is to use IList to handle generic arrays. 
         //This was an interview question where the interviewer insisted on this method.
         //Even though array has exposed IList since .NET 2.0 :-|
-        //Even so, like letting a Wookee win, it's best to humor QA org VPs.
         static void CopyElements<T>(T[] input , T[] output, int count, int sourceStart, int destStart)
         {
             if (input == null || output == null)

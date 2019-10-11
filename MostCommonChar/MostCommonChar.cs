@@ -15,6 +15,9 @@ namespace ConsoleApp1
             char result = Result.maximumOccurringCharacter(text);
 
             Console.WriteLine($"Most common character is: {result}");
+
+            string text2 = "hello world";
+            result = Result.maximumOccurringCharacterFast(text2);
         }
 
     }
@@ -45,6 +48,28 @@ namespace ConsoleApp1
 
             return result;
 
+        }
+
+        //Hash implmentation. 
+       
+        public static char maximumOccurringCharacterFast(string text)
+        {
+            var maxcount = 0;
+            char result = ' ';
+            var found = new short[char.MaxValue];
+            
+            foreach (char c in text)
+            {
+                found[c]++;
+
+                if (found[c] > maxcount)
+                {
+                    maxcount = found[c];
+                    result = c;
+                }
+            }
+
+            return result;
         }
 
     }
