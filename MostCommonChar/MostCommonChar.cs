@@ -9,7 +9,6 @@ namespace ConsoleApp1
     {
         public static void Main(string[] args)
         {
-
             string text = "hello world";
 
             char result = Result.maximumOccurringCharacter(text);
@@ -19,7 +18,6 @@ namespace ConsoleApp1
             string text2 = "hello world";
             result = Result.maximumOccurringCharacterFast(text2);
         }
-
     }
 
     class Result
@@ -51,7 +49,6 @@ namespace ConsoleApp1
         }
 
         //Hash implmentation. 
-       
         public static char maximumOccurringCharacterFast(string text)
         {
             var maxcount = 0;
@@ -69,6 +66,7 @@ namespace ConsoleApp1
                 }
             }
 
+            
             return result;
         }
 
