@@ -86,7 +86,7 @@ class Solution
      * }
      *
      */
-    static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data)
+    static SinglyLinkedListNode InsertNodeAtHead(SinglyLinkedListNode llist, int data)
     {
 
         var newHead = new SinglyLinkedListNode(data);
@@ -101,7 +101,7 @@ class Solution
     }
 
 
-    static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data)
+    static SinglyLinkedListNode InsertNodeAtTail(SinglyLinkedListNode head, int data)
     {
         var newNode = new SinglyLinkedListNode(data);
 
@@ -123,7 +123,7 @@ class Solution
         return head;
     }
 
-    static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode head, int data, int position) {
+    static SinglyLinkedListNode InsertNodeAtPosition(SinglyLinkedListNode head, int data, int position) {
 
         var newNode = new SinglyLinkedListNode(data);
 
@@ -160,7 +160,7 @@ class Solution
         return head;
     }
 
-    static void reversePrint(SinglyLinkedListNode head)
+    static void ReversePrint(SinglyLinkedListNode head)
     {
 
         if (head == null)
@@ -173,7 +173,7 @@ class Solution
         }
         else
         {
-            reversePrint(head.next);
+            ReversePrint(head.next);
             Console.WriteLine(head.data);
         }
     }
@@ -205,7 +205,7 @@ class Solution
 
     }
 
-    static SinglyLinkedListNode reverseListIterative(SinglyLinkedListNode head)
+    static SinglyLinkedListNode ReverseListIterative(SinglyLinkedListNode head)
     {
 
         SinglyLinkedListNode previousNode = null, current = head, nextNode = null;
@@ -223,7 +223,7 @@ class Solution
         return head;
     }
 
-    static SinglyLinkedListNode reverseList(SinglyLinkedListNode head)
+    static SinglyLinkedListNode ReverseList(SinglyLinkedListNode head)
     {
         if (head == null)
             return null;
@@ -235,7 +235,7 @@ class Solution
            return head;
         }
                                   
-        SinglyLinkedListNode newHead = reverseList(head.next);                                           
+        SinglyLinkedListNode newHead = ReverseList(head.next);                                           
 
         //Set the next node next to point back to the current node 
         head.next.next = head; 
@@ -247,7 +247,7 @@ class Solution
         return newHead; 
     }
 
-    static bool hasCycle(SinglyLinkedListNode head) 
+    static bool HasCycle(SinglyLinkedListNode head) 
     {
 
        //Floyd's cycle detection...
@@ -275,7 +275,7 @@ class Solution
     }
     
     //Brute force
-    static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) 
+    static SinglyLinkedListNode MergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) 
     {
 
         if(head1 == null && head2 != null)
@@ -294,28 +294,28 @@ class Solution
             
             if(head1 == null && head2 != null)
             {
-                newList.head = insertNodeAtTail(newList.head,head2.data);
+                newList.head = InsertNodeAtTail(newList.head,head2.data);
                 head2 = head2.next;
             }
             else if(head1 != null && head2 == null)
             {
-                newList.head = insertNodeAtTail(newList.head,head1.data);
+                newList.head = InsertNodeAtTail(newList.head,head1.data);
                 head1 = head1.next;
             }
             else if(head1.data <= head2.data)
             {
-                newList.head = insertNodeAtTail(newList.head,head1.data);
+                newList.head = InsertNodeAtTail(newList.head,head1.data);
                 head1 = head1.next;
             }
             else if (head1.data > head2.data)
             {
-                newList.head = insertNodeAtTail(newList.head,head2.data);
+                newList.head = InsertNodeAtTail(newList.head,head2.data);
                 head2 = head2.next;
             }
         }
     }
 
-    static SinglyLinkedListNode mergeListsRecursive(SinglyLinkedListNode head1, SinglyLinkedListNode head2) 
+    static SinglyLinkedListNode MergeListsRecursive(SinglyLinkedListNode head1, SinglyLinkedListNode head2) 
     {
         if (head1 == null && head2 == null) return null;
 
@@ -324,7 +324,7 @@ class Solution
     
         if(head1.data <= head2.data)
         {
-            head1.next = mergeListsRecursive(head1.next, head2);
+            head1.next = MergeListsRecursive(head1.next, head2);
         }
         else //head2 is smaller than head1
         {
@@ -332,14 +332,14 @@ class Solution
             head2 = head2.next;
             temp.next = head1;
             head1 = temp;
-            head1.next = mergeListsRecursive(head1.next, head2);
+            head1.next = MergeListsRecursive(head1.next, head2);
         }
         return head1; 
     }
 
     
 
-    static SinglyLinkedListNode deleteNode(SinglyLinkedListNode head, int position)
+    static SinglyLinkedListNode DeleteNode(SinglyLinkedListNode head, int position)
     {
 
         SinglyLinkedListNode seekHead = head;
@@ -377,7 +377,7 @@ class Solution
 
     //Remove dupes from sorted list
     //This can be done recursivly but this is easier to read.
-    static SinglyLinkedListNode removeDuplicates(SinglyLinkedListNode head) {
+    static SinglyLinkedListNode RemoveDuplicates(SinglyLinkedListNode head) {
 
         if(head == null)
             return head;
@@ -400,7 +400,7 @@ class Solution
         return head;
     }
 
-    static int getNode(SinglyLinkedListNode head, int positionFromTail) {
+    static int GetNode(SinglyLinkedListNode head, int positionFromTail) {
 /*
         //Brute Force:
         List<int> data = new List<int>();
@@ -450,7 +450,7 @@ class Solution
         for (int i = 0; i < llistCount; i++)
         {
             int llistItem = items[i];
-            SinglyLinkedListNode llist_head = insertNodeAtTail(llist.head, llistItem);
+            SinglyLinkedListNode llist_head = InsertNodeAtTail(llist.head, llistItem);
             //SinglyLinkedListNode llist_head = insertNodeAtHead(llist.head, llistItem);
             llist.head = llist_head;
         }
@@ -458,7 +458,7 @@ class Solution
         for (int i = 0; i < llistCount; i++)
         {
             int llistItem = items2[i];
-            SinglyLinkedListNode llist_head = insertNodeAtTail(llist2.head, llistItem);
+            SinglyLinkedListNode llist_head = InsertNodeAtTail(llist2.head, llistItem);
             
             llist2.head = llist_head;
         }
@@ -479,10 +479,10 @@ class Solution
         //var foo2 = reverseListIterative(llist.head);
 
         //var merged = mergeLists(llist.head,llist2.head);
-        var merged = mergeListsRecursive(llist.head, llist2.head);
-        reversePrint(merged);
+        var merged = MergeListsRecursive(llist.head, llist2.head);
+        ReversePrint(merged);
 
-        var foo = getNode(merged, 3);
+        var foo = GetNode(merged, 3);
 
         //PrintSinglyLinkedList(merged, "\n", textWriter);
         // textWriter.WriteLine();
