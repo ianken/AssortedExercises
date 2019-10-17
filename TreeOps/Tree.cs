@@ -45,7 +45,6 @@ namespace TreeOps
             return BuildTree(input, this.Root);
         }
         
-        //public void BuildBinaryTree(int[] input,TreeNode root)
         public void BuildBinaryTree(int[] input)
         {
             TreeNode result = null;

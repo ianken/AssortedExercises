@@ -324,7 +324,7 @@ class Solution
     
         if(head1.data <= head2.data)
         {
-            head1.next = mergeLists(head1.next, head2);
+            head1.next = mergeListsRecursive(head1.next, head2);
         }
         else //head2 is smaller than head1
         {
@@ -332,7 +332,7 @@ class Solution
             head2 = head2.next;
             temp.next = head1;
             head1 = temp;
-            head1.next = mergeLists(head1.next, head2);
+            head1.next = mergeListsRecursive(head1.next, head2);
         }
         return head1; 
     }
@@ -476,9 +476,10 @@ class Solution
         result = CompareLists(foo,llist.head);
         */
 
-        var foo2 = reverseListIterative(llist.head);
+        //var foo2 = reverseListIterative(llist.head);
 
-        var merged = mergeLists(llist.head,llist2.head);
+        //var merged = mergeLists(llist.head,llist2.head);
+        var merged = mergeListsRecursive(llist.head, llist2.head);
         reversePrint(merged);
 
         var foo = getNode(merged, 3);
